@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PnetPhlix", "PnetPhlix.vcxproj", "{3BBBA810-11A3-4169-A273-C577FCCEA1FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Debug|x64.ActiveCfg = Debug|x64
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Debug|x64.Build.0 = Debug|x64
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Debug|x86.ActiveCfg = Debug|Win32
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Debug|x86.Build.0 = Debug|Win32
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Release|x64.ActiveCfg = Release|x64
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Release|x64.Build.0 = Release|x64
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Release|x86.ActiveCfg = Release|Win32
+		{3BBBA810-11A3-4169-A273-C577FCCEA1FD}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2A3F967-43A9-4508-B1ED-6BB7AFE37A20}
+	EndGlobalSection
+EndGlobal
