@@ -54,17 +54,54 @@ public:
 
     void insert(const KeyType& key, const ValueType& value)
     {
-        if (m_root == nullptr) {
-            m_root = new TreeNode; // Constructs node with left and right values nullptr
-            m_root->m_keyVal = key;
-            m_root->values.push_back(value);
-        }
+        if (m_root == nullptr)
+            m_root = new TreeNode(key, value); // Constructs node with left and right values nullptr
         
-        Node* cur = m_root;
+        TreeNode* curr = m_root;
         while (true) {
-            
+            // If found a TreeNode with the key already
+            if (key == curr->keyVal) {
+                std::list<ValueType>::iterator it = curr->values.begin();
+                while (it != curr->values.end()) {
+                    // Key already maps to the value
+                    if (value == *it)
+                        return;
+                    // If value should go right before this
+                    else if (value < *it) {
+                        // Add value right before here
+                        curr->values.insert(it, value); // UNSURE
+                    }
 
-
+                    // Value should go after this
+                    else if (value > *it) {
+                        // Add value to end of list
+                        if (it == curr->values.end())
+                            curr->values.push_back(*it);
+                        // Iterate to next element
+                        else
+                            it++;
+                    }
+                }
+            }
+            else if (key < curr->keyVal) {
+                // Iterate to left TreeNode
+                if (curr->left != nullptr)
+                    curr = curr->left;
+                // Create new TreeNode
+                else {
+                    curr = new TreeNode(key, value);
+                    return;
+                }
+            }
+            // key > curr->keyVal
+            else {
+                if (curr->right != nullptr)
+                    curr = curr->right;
+                else {
+                    curr = new TreeNode(key, value);
+                    return;
+                }
+            }
         }
     }
 
@@ -75,13 +112,18 @@ public:
     
 private:
     struct TreeNode {
-        TreeNode() { left = nullptr; right = nullptr; }
+        TreeNode(KeyType key, ValueType value) {
+            keyVal = key;
+            values.push_back(value);
+            left = nullptr;
+            right = nullptr;
+        }
         KeyType keyVal;
         std::list<ValueType> values;
-        Node* left;
-        Node* right;
+        TreeNode* left;
+        TreeNode* right;
       };
-    Node* m_root;
+    TreeNode* m_root;
 };
 
 #endif // TREEMULTIMAP_INCLUDED
