@@ -1,17 +1,23 @@
 #ifndef TREEMULTIMAP_INCLUDED
 #define TREEMULTIMAP_INCLUDED
 
+#include <list>
+
 template <typename KeyType, typename ValueType>
 class TreeMultimap
 {
-  public:
+public:
     class Iterator
     {
-      public:
+    public:
         Iterator()
         {
             // Replace this line with correct code.
+            m_curr = m_root;
+            m_prev = nullptr;
         }
+        // Added new constructor
+        Iterator(TreeMultimap<KeyType,ValueType>,& )
 
         ValueType& get_value() const
         {
@@ -28,12 +34,17 @@ class TreeMultimap
             // Replace this line with correct code.
         }
 
-      private:
+    private:
+        Node* m_curr;
+        Node* m_prev;
+
+        // In order traversal
+
     };
 
     TreeMultimap()
     {
-        // Replace this line with correct code.
+        m_root = nullptr;
     }
 
     ~TreeMultimap()
@@ -43,15 +54,34 @@ class TreeMultimap
 
     void insert(const KeyType& key, const ValueType& value)
     {
-        // Replace this line with correct code.
+        if (m_root == nullptr) {
+            m_root = new TreeNode; // Constructs node with left and right values nullptr
+            m_root->m_keyVal = key;
+            m_root->values.push_back(value);
+        }
+        
+        Node* cur = m_root;
+        while (true) {
+            
+
+
+        }
     }
 
     Iterator find(const KeyType& key) const
     {
         return Iterator();  // Replace this line with correct code.
     }
-
-  private:
+    
+private:
+    struct TreeNode {
+        TreeNode() { left = nullptr; right = nullptr; }
+        KeyType keyVal;
+        std::list<ValueType> values;
+        Node* left;
+        Node* right;
+      };
+    Node* m_root;
 };
 
 #endif // TREEMULTIMAP_INCLUDED
