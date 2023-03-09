@@ -23,6 +23,7 @@
     <ClCompile Include="Movie.cpp" />
     <ClCompile Include="MovieDatabase.cpp" />
     <ClCompile Include="Recommender.cpp" />
+    <ClCompile Include="testMovieDatabase.cpp" />
     <ClCompile Include="testTree.cpp" />
     <ClCompile Include="testUserDatabase.cpp" />
     <ClCompile Include="User.cpp" />

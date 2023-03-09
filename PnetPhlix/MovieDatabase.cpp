@@ -7,7 +7,7 @@ using namespace std;
 
 // I added the following
 #include <iostream>
-#include <fstream>
+
 #include <sstream> // To convert string to int
 
 MovieDatabase::MovieDatabase()
@@ -34,7 +34,8 @@ bool MovieDatabase::load(const string& filename)
     vector<string> directors; // Maybe just insert as a string with commas
     vector<string> actors;
     vector<string> genres;
-    int rating, numDirectors, numActors, numGenres;
+    // int numDirectors, numActors, numGenres;
+    float rating;
     Movie* movie = nullptr;
     while (true) {
 
@@ -71,12 +72,15 @@ bool MovieDatabase::load(const string& filename)
             break;
     }
 
-    return true;  // Replace this line with correct code.
+    return true;
 }
 
 Movie* MovieDatabase::get_movie_from_id(const string& id) const
 {
-    return nullptr;  // Replace this line with correct code.
+    TreeMultimap<string, Movie*>::Iterator it = m_tree->find(id);
+    if (it.is_valid() && it.get_value() != nullptr)
+        return it.get_value();
+    return nullptr;
 }
 
 vector<Movie*> MovieDatabase::get_movies_with_director(const string& director) const
@@ -94,18 +98,20 @@ vector<Movie*> MovieDatabase::get_movies_with_genre(const string& genre) const
     return vector<Movie*>();  // Replace this line with correct code.
 }
 
-void parseLine(ifstream& infile, std::vector<std::string>& v) {
+void MovieDatabase::parseLine(ifstream& infile, vector<string>& v) {
     string currLine;
+    char c;
     // Make into function
     // Read each word until no comma encountered
-    while (infile >> currLine) {
+    while (infile.get(c)) {
         // Remove the comma if there is one
-        if (currLine.back() == ',')
-            currLine.pop_back();
+        if (currLine.back() == ',') {
+            v.push_back(currLine); // Push words to vector
+            currLine = "";
+        }
         // If no comma, we reached end of line
         else
-            return;
+            currLine += c;
 
-        v.push_back(currLine); // Push words to vector
     }
 }

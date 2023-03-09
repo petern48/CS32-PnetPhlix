@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "treemm.h"
+#include <fstream>
 
 const int IDLINENUMBER = 1;
 const int TITLELINENUMBER = 2;
@@ -30,7 +31,7 @@ class MovieDatabase // CASE INSENSITIVE search
   private:
       TreeMultimap <std::string, Movie*> *m_tree;
         
-      void parseLine(ifstream& infile, std::vector<std::string>& v);
+      void parseLine(std::ifstream& infile, std::vector<std::string>& v);
 };
 
 #endif // MOVIEDATABASE_INCLUDED

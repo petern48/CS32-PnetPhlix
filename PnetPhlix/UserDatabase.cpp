@@ -73,5 +73,5 @@ User* UserDatabase::get_user_from_email(const string& email) const
     TreeMultimap<string, User*>::Iterator it = m_tree->find(email);
     if (it.is_valid() && it.get_value() != nullptr)
         return it.get_value();
-    return nullptr;  // Replace this line with correct code.
+    return nullptr;
 }
