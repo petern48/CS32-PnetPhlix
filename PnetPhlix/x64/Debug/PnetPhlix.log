@@ -1,6 +1,2 @@
-﻿  main.cpp
-  Movie.cpp
-  MovieDatabase.cpp
-  testTree.cpp
-  Generating Code...
+﻿  UserDatabase.cpp
   PnetPhlix.vcxproj -> C:\CS32\CS32-PnetPhlix\PnetPhlix\x64\Debug\PnetPhlix.exe

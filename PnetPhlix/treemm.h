@@ -183,11 +183,11 @@ private:
     TreeNode* binarySearch(TreeNode* curr, const KeyType& key) const {
         if (curr == nullptr)
             return nullptr;
-        else if (curr->keyVal == key)
+        else if (key == curr->keyVal)
             return curr;
-        else if (curr->keyVal < key)
+        else if (key < curr->keyVal)
             return binarySearch(curr->left, key);
-        else // curr->keyVal > key
+        else // key > curr->keyVal
             return binarySearch(curr->right, key);
     }
 };
