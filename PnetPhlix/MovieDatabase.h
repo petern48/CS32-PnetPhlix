@@ -28,7 +28,7 @@ class MovieDatabase // CASE INSENSITIVE search
     std::vector<Movie*> get_movies_with_genre(const std::string& genre) const;
 
   private:
-      TreeMultimap <std::string, std::vector<Movie*>> *m_tree;
+      TreeMultimap <std::string, Movie*> *m_tree;
         
       void parseLine(ifstream& infile, std::vector<std::string>& v);
 };

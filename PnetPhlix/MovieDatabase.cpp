@@ -12,7 +12,7 @@ using namespace std;
 
 MovieDatabase::MovieDatabase()
 {
-    m_tree = new TreeMultimap<string, vector<Movie*>>;
+    m_tree = new TreeMultimap<string, Movie*>;
 }
 
 MovieDatabase::~MovieDatabase() {
@@ -27,15 +27,16 @@ bool MovieDatabase::load(const string& filename)
         cerr << "Error: Couldn't open file " << filename << endl;
         return false;
     }
+    string currLine, temp;
+    string id;
+    string title;
+    string releaseYear;
+    vector<string> directors; // Maybe just insert as a string with commas
+    vector<string> actors;
+    vector<string> genres;
+    int rating, numDirectors, numActors, numGenres;
+    Movie* movie = nullptr;
     while (true) {
-        string currLine, temp;
-        string id;
-        string title;
-        string releaseYear;
-        vector<string> directors; // Maybe just insert as a string with commas
-        vector<string> actors;
-        vector<string> genres;
-        int rating, numDirectors, numActors, numGenres;
 
         int lineCount = 1;
 
@@ -60,6 +61,11 @@ bool MovieDatabase::load(const string& filename)
             ss >> rating;
         }
         
+        // Create Movie and push to tree
+        movie = new Movie(id, title, releaseYear, directors, actors, genres, rating);
+
+        m_tree->insert(id, movie); // UNSURE if sort by ID
+
         // We should now be at the end of the Movie Record
         if (!getline(infile, currLine))
             break;
