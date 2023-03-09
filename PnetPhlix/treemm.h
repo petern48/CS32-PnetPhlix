@@ -6,8 +6,10 @@
 template <typename KeyType, typename ValueType>
 class TreeMultimap
 {
+private:
+    struct TreeNode; // Declare so Iterator knows about it
 public:
-    class Iterator
+    class Iterator // Used to obtain all values associated with the key
     {
     public:
         Iterator()
@@ -15,24 +17,23 @@ public:
             m_node = nullptr; // Invalid iterator
         }
         // New Constructor
-        Iterator(TreeMultimap<KeyType, ValueType>& t) {
-            m_node = t.m_root;
-        }
 
         Iterator(TreeNode *node) {
             m_node = node;
+            m_it = m_node->values.begin();
         }
 
         ValueType& get_value() const
         {
-            if (isvalid())
-                return m_node->values; // TODO returning a list
+            if (is_valid()) {
+                return *m_it;
+            }
             throw 1;  // Replace this line with correct code.
         }
 
         bool is_valid() const
         {
-            if (m_node != nullptr)
+            if (m_node != nullptr && m_it != m_node->values.end())
                 return true;
             return false;
         }
@@ -40,6 +41,9 @@ public:
         // In order traversal
         void advance()
         {
+            if (m_it != m_node->values.end())
+                m_it++;
+            /*
             // Recall: iterators starts at the node furthest to the left
             
 
@@ -66,10 +70,12 @@ public:
                     m_node = m_node->parent;
                 }
             }
+            */
         }
 
     private:
         TreeNode* m_node;
+        typename std::list<ValueType>::iterator m_it;
     };
 
     TreeMultimap()
@@ -91,8 +97,7 @@ public:
         while (true) {
             // If found a TreeNode with the key already
             if (key == curr->keyVal) {
-                std::list<ValueType>::iterator it = curr->values.begin();
-                while (it != curr->values.end()) {
+                typename std::list<ValueType>::iterator it = (curr->values).begin();
                     // Key already maps to the value
                     if (value == *it)
                         return;
@@ -100,18 +105,23 @@ public:
                     else if (value < *it) {
                         // Add value right before here
                         curr->values.insert(it, value); // UNSURE
+                        return;
                     }
 
                     // Value should go after this
                     else if (value > *it) {
-                        // Add value to end of list
-                        if (it == curr->values.end())
-                            curr->values.push_back(*it);
-                        // Iterate to next element
-                        else
-                            it++;
+                        while (true) {
+                            // Add value to end of list
+                            if (it == curr->values.end()) {
+                                curr->values.push_back(value);
+                                return;
+                            }
+                            // Iterate to next element
+                            else
+                                it++;
+
+                        }
                     }
-                }
             }
             // TreeNode for key doesn't exist yet
             else if (key < curr->keyVal) {
@@ -126,7 +136,7 @@ public:
             }
             // key > curr->keyVal
             else {
-                if (curr->right == nulltr) {
+                if (curr->right == nullptr) {
                     curr->right = new TreeNode(key, value, curr);
                     return;
                 }
@@ -139,7 +149,9 @@ public:
     Iterator find(const KeyType& key) const
     {
         TreeNode* n = binarySearch(m_root, key);
-        return Iterator(n);
+        if (n != nullptr)
+            return Iterator(n);
+        return Iterator(); // Invalid Iterator
     }
     
 private:
@@ -161,21 +173,22 @@ private:
         // In order Traversal
         if (curr == nullptr)
             return;
+        TreeNode* rightNode = curr->right; // Save in advance before deleting
         deleteAll(curr->left);
         if (curr != nullptr)
             delete curr;
-        deleteAll(curr->right);
+        deleteAll(rightNode);
     }
 
-    TreeNode* binarySearch(TreeNode* curr, const KeyType& key) {
+    TreeNode* binarySearch(TreeNode* curr, const KeyType& key) const {
         if (curr == nullptr)
             return nullptr;
         else if (curr->keyVal == key)
             return curr;
         else if (curr->keyVal < key)
-            return search(curr->left);
+            return binarySearch(curr->left, key);
         else // curr->keyVal > key
-            return search(curr->right);
+            return binarySearch(curr->right, key);
     }
 };
 
