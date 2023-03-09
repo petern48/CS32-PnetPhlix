@@ -4,9 +4,13 @@
 #include <string>
 #include <vector>
 
+const int IDLINENUMBER = 1;
+const int TITLELINENUMBER = 2;
+const int YEARLINENUMBER = 3;
+
 class Movie;
 
-class MovieDatabase
+class MovieDatabase // CASE INSENSITIVE search
 {
   public:
     MovieDatabase();

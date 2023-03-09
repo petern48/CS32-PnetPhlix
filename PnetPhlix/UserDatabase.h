@@ -10,7 +10,7 @@ const int MOVIECOUNTLINENUMBER = 3;
 
 class User;
 
-class UserDatabase
+class UserDatabase // CASE SENSITIVE
 {
   public:
     UserDatabase();
