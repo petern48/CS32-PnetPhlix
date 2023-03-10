@@ -11,7 +11,7 @@ class User
          const std::vector<std::string>& watch_history);
     std::string get_full_name() const;
     std::string get_email() const;
-    std::vector<std::string> get_watch_history() const;
+    std::vector<std::string> get_watch_history() const; // vector of movie IDs
 
   private:
       std::string m_name;

@@ -16,8 +16,8 @@ public:
         {
             m_node = nullptr; // Invalid iterator
         }
-        // New Constructor
 
+        // New Constructor
         Iterator(TreeNode *node) {
             m_node = node;
             m_it = m_node->values.begin();
@@ -170,14 +170,15 @@ private:
     TreeNode* m_root;
 
     void deleteAll(TreeNode* curr) {
-        // In order Traversal
+        // Post Order Traversal
         if (curr == nullptr)
             return;
-        TreeNode* rightNode = curr->right; // Save in advance before deleting
         deleteAll(curr->left);
-        if (curr != nullptr)
+        deleteAll(curr->right);
+        if (curr != nullptr) {
             delete curr;
-        deleteAll(rightNode);
+            curr = nullptr;
+        }
     }
 
     TreeNode* binarySearch(TreeNode* curr, const KeyType& key) const {

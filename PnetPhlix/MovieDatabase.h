@@ -17,7 +17,7 @@ const int RATINGLINENUMBER = 7;
 
 class Movie;
 
-class MovieDatabase // CASE INSENSITIVE search
+class MovieDatabase // CASE INSENSITIVE search TODO
 {
   public:
     MovieDatabase();
