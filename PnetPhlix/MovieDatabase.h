@@ -30,7 +30,15 @@ class MovieDatabase // CASE INSENSITIVE search
 
   private:
       TreeMultimap <std::string, Movie*> *m_tree;
-        
+
+      TreeMultimap <std::string, int>* m_idTree;
+      TreeMultimap <std::string, int>* m_directorTree;
+      TreeMultimap <std::string, int>* m_actorTree;
+      TreeMultimap <std::string, int>* m_genreTree;
+
+      std::vector<Movie*> m_movies;
+      int m_movieCount;
+
       void parseLine(std::ifstream& infile, std::vector<std::string>& v);
 };
 

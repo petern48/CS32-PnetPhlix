@@ -22,7 +22,7 @@ int main()
 	}
 	
 	cout << u->get_id() << endl;
-	/*
+	
 	cout << u->get_title() << endl;
 	cout << u->get_release_year() << endl;
 	vector<string> v = u->get_actors();
@@ -38,7 +38,6 @@ int main()
 		cout << v[i] << endl;
 	}
 	cout << u->get_rating() << endl;
-	*/
 
 
 }
