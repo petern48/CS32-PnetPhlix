@@ -105,13 +105,18 @@ void MovieDatabase::parseLine(ifstream& infile, vector<string>& v) {
     // Read each word until no comma encountered
     while (infile.get(c)) {
         // Remove the comma if there is one
-        if (currLine.back() == ',') {
-            v.push_back(currLine); // Push words to vector
+        if (c == ',') {
+            v.push_back(currLine);
             currLine = "";
+        }
+        else if (c == '\n') {
+            v.push_back(currLine); // TODO
+            return;
         }
         // If no comma, we reached end of line
         else
-            currLine += c;
+            currLine += c; // Push words to vector
+
 
     }
 }
