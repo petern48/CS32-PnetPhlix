@@ -1,0 +1,127 @@
+ID10782
+Santosh Subramaniam
+2008
+M. Raja
+Jayam Ravi,Genelia D'Souza,Prakash Raj,Sayaji Shinde,Geetha
+Action,Comedy,Romance
+5
+
+ID25779
+The Carpet of Horror
+1962
+Harald Reinl
+Joachim Fuchsberger,Karin Dor,Werner Peters,Eleonora Rossi Drago,Carl Lange
+Crime,Horror
+2.25
+
+ID35763
+Monkey Love Experiments
+2014
+Will Anderson
+Tobias Feltus,Oliver Henderson
+Animation,Drama
+4
+
+ID02298
+The Arbalest
+2016
+Adam Pinney
+Mike Brune,Tallie Medel,Matthew Stanton,Felice Heather Monteith,Jon Briddell
+Drama
+3.5
+
+ID39216
+No Safe Spaces
+2019
+Justin Folk
+Dennis Prager,Adam Carolla,Ben Shapiro,Jordan B. Peterson,Dave Rubin
+Documentary
+3.44444
+
+ID19214
+The Queen of Trees
+2005
+Mark Deeble
+Ian Holm
+Documentary,Drama
+4.25
+
+ID00910
+Paris The Luminous Years
+2010
+Perry Miller Adato
+Josephine Baker,Sylvia Beach,Daniel Breaker,Chris Henry Coffey,Aaron Copland
+Documentary
+3
+
+ID38613
+Maria, Mirabella
+1981
+Ion Popescu-Gopo
+Gilda Manolescu,Medeea Marinescu,Ion Popescu-Gopo,Ingrid Celia,Lyudmila Gnilova
+Animation,Children,Comedy
+2
+
+ID31049
+Klaus
+2019
+Sergio Pablos
+Rashida Jones,J.K. Simmons,Joan Cusack,Jason Schwartzman,Tucker Meek
+Adventure,Animation,Children,Comedy
+3.85808
+
+ID38033
+The Devil's Partner
+1961
+Charles R. Rondeau
+Edgar Buchanan,Jean Allison,Richard Crane,Spencer Carlisle,Byron Foulger
+Horror
+2.5
+
+ID21608
+Trackman
+2007
+Igor Shavlak
+Dmitriy Orlov,Svetlana Metkina,Yuliya Mikhailova,Igor Shavlak,Aleksandr Vysokovskiy
+Horror,Thriller
+1.83333
+
+ID13832
+Next
+1990
+Barry Purves
+Roger Rees,Barry Purves
+Animation
+3.25
+
+ID15176
+The Life and Times of Frida Kahlo
+2005
+Amy Stechler
+Rita Moreno,Lila Downs,Leon Trotsky
+Documentary
+4
+
+ID01979
+First Man on the Moon
+2012
+Christopher Riley
+Corey Johnson,Neil Armstrong,Michael Collins,Buzz Aldrin,Dave Scott
+Documentary
+4
+
+ID06640
+Marvel Renaissance
+2014
+Philippe Guedj
+Avi Arad,Tom DeSanto,Louis Leterrier,Mark Millar,Jimmy Palmiotti
+Documentary
+3
+
+ID06638
+Winston Churchill: A Giant in the Century
+2014
+David Korn-Brzoza
+Vincent Lindon,Winston Churchill,Clementine Churchill,Diana Churchill,Mary Churchill
+Documentary,War
+4.5

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="movies.txt" />
+    <Text Include="myMovies.txt" />
     <Text Include="users.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

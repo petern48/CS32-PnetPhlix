@@ -11,9 +11,7 @@ using namespace std;
 #include <sstream> // To convert string to int
 
 MovieDatabase::MovieDatabase()
-{
-    m_tree = new TreeMultimap<string, Movie*>;
-    
+{   
     m_idTree = new TreeMultimap<string, int>;
     m_actorTree = new TreeMultimap<string, int>;
     m_directorTree = new TreeMultimap<string, int>;
@@ -22,8 +20,10 @@ MovieDatabase::MovieDatabase()
 }
 
 MovieDatabase::~MovieDatabase() {
-    if (m_tree != nullptr)
-        delete m_tree;
+    delete m_idTree;
+    delete m_actorTree;
+    delete m_directorTree;
+    delete m_genreTree;
 }
 
 bool MovieDatabase::load(const string& filename)
@@ -153,15 +153,23 @@ bool MovieDatabase::load(const string& filename)
 
 Movie* MovieDatabase::get_movie_from_id(const string& id) const
 {
-    TreeMultimap<string, Movie*>::Iterator it = m_tree->find(id);
-    if (it.is_valid() && it.get_value() != nullptr)
-        return it.get_value();
+    TreeMultimap<string, int>::Iterator it = m_idTree->find(id);
+    if (it.is_valid())
+        return m_movies[it.get_value()]; // Get the position of the movie and return the respective movie
     return nullptr;
 }
 
 vector<Movie*> MovieDatabase::get_movies_with_director(const string& director) const
 {
-    return vector<Movie*>();  // Replace this line with correct code.
+    vector<Movie*> v;
+    Movie* movie;
+    TreeMultimap<string, int>::Iterator it = m_directorTree->find(director);
+    while (it.is_valid()) {
+        movie = m_movies[it.get_value()];
+        v.push_back(movie);
+        it.advance();
+    }
+    return v;
 }
 
 vector<Movie*> MovieDatabase::get_movies_with_actor(const string& actor) const
