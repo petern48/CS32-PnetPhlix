@@ -42,22 +42,44 @@ int main()
 	cout << u->get_rating() << endl;
 	*/
 
+	/*
 	// Test getmovies with director
 	cout << "Input Director: ";
-	cin >> input;
-	vector<Movie*> moviesWithDirectors = ud.get_movies_with_director(input);
-	/*
-	if ( == nullptr) {
-		"Invalid ID";
-		return -1;
+	getline(cin, input);
+	vector<Movie*> movieVect = ud.get_movies_with_director(input);
+
+	for (int i = 0; i < movieVect.size(); i++) {
+		cout << movieVect[i]->get_title() << endl;
+		vector<string> directors = movieVect[i]->get_directors();
+		for (int i = 0; i < directors.size(); i++)
+			cout << directors[i] << ", ";
+		cout << endl;
 	}
 	*/
 
-	for (int i = 0; i < moviesWithDirectors.size(); i++) {
-		cout << moviesWithDirectors[i]->get_title() << endl;
-		vector<string> directors = moviesWithDirectors[i]->get_directors();
-		for (int i = 0; i < directors.size(); i++)
-			cout << directors[i] << ", ";
+	/*
+	cout << "Input Actor: ";
+	getline(cin, input);
+	vector<Movie*> movieVect = ud.get_movies_with_actor(input);
+
+	for (int i = 0; i < movieVect.size(); i++) {
+		cout << movieVect[i]->get_title() << endl;
+		vector<string> v2 = movieVect[i]->get_actors();
+		for (int i = 0; i < v2.size(); i++)
+			cout << v2[i] << ", ";
+		cout << endl;
+	}
+	*/
+
+	cout << "Input Genre: ";
+	getline(cin, input);
+	vector<Movie*> movieVect = ud.get_movies_with_genre(input);
+
+	for (int i = 0; i < movieVect.size(); i++) {
+		cout << movieVect[i]->get_title() << endl;
+		vector<string> v2 = movieVect[i]->get_genres();
+		for (int i = 0; i < v2.size(); i++)
+			cout << v2[i] << ", ";
 		cout << endl;
 	}
 }

@@ -174,12 +174,28 @@ vector<Movie*> MovieDatabase::get_movies_with_director(const string& director) c
 
 vector<Movie*> MovieDatabase::get_movies_with_actor(const string& actor) const
 {
-    return vector<Movie*>();  // Replace this line with correct code.
+    vector<Movie*> v;
+    Movie* movie;
+    TreeMultimap<string, int>::Iterator it = m_actorTree->find(actor);
+    while (it.is_valid()) {
+        movie = m_movies[it.get_value()];
+        v.push_back(movie);
+        it.advance();
+    }
+    return v;
 }
 
 vector<Movie*> MovieDatabase::get_movies_with_genre(const string& genre) const
 {
-    return vector<Movie*>();  // Replace this line with correct code.
+    vector<Movie*> v;
+    Movie* movie;
+    TreeMultimap<string, int>::Iterator it = m_genreTree->find(genre);
+    while (it.is_valid()) {
+        movie = m_movies[it.get_value()];
+        v.push_back(movie);
+        it.advance();
+    }
+    return v;
 }
 
 void MovieDatabase::parseLine(ifstream& infile, vector<string>& v) {
@@ -203,3 +219,4 @@ void MovieDatabase::parseLine(ifstream& infile, vector<string>& v) {
 
     }
 }
+
