@@ -7,6 +7,7 @@
 #include "treemm.h"
 #include <fstream>
 
+const int MAXMOVIES = 40000; // Spec says 20k, but .txt file has 40k
 const int IDLINENUMBER = 1;
 const int TITLELINENUMBER = 2;
 const int YEARLINENUMBER = 3;
@@ -34,7 +35,7 @@ class MovieDatabase // CASE INSENSITIVE search TODO
       TreeMultimap <std::string, int>* m_actorTree;
       TreeMultimap <std::string, int>* m_genreTree;
 
-      std::vector<Movie*> m_movies;
+      Movie* m_movies[MAXMOVIES];
       int m_movieCount;
 
       void parseLine(std::ifstream& infile, std::vector<std::string>& v);

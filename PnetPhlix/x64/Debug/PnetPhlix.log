@@ -1,6 +1,5 @@
-﻿  MovieDatabase.cpp
-  Recommender.cpp
-  UserDatabase.cpp
+﻿  Recommender.cpp
   testMovieDatabase.cpp
+  testRecommender.cpp
   Generating Code...
   PnetPhlix.vcxproj -> C:\CS32\CS32-PnetPhlix\PnetPhlix\x64\Debug\PnetPhlix.exe

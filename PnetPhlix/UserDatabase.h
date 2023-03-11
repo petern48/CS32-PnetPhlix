@@ -4,6 +4,7 @@
 #include <string>
 // I added the following
 #include "treemm.h"
+const int MAXUSERS = 100000; // Page 1
 const int NAMELINENUMBER = 1;
 const int EMAILLINENUMBER = 2;
 const int MOVIECOUNTLINENUMBER = 3;

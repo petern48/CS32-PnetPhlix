@@ -67,7 +67,8 @@ bool MovieDatabase::load(const string& filename)
 
         // Create Movie and push to vector
         movie = new Movie(id, title, releaseYear, directors, actors, genres, rating);
-        m_movies.push_back(movie);
+        m_movies[m_movieCount] = movie;
+        // Increment count after for loops
 
         // Insert into trees
         m_idTree->insert(id, m_movieCount);

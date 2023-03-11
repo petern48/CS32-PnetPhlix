@@ -3,12 +3,16 @@
 
 #include <string>
 #include <vector>
+#include "treemm.h"
+#include "MovieDatabase.h"
+#include "UserDatabase.h"
 
 class UserDatabase;
 class MovieDatabase;
 
-const int MAXMOVIES = 20000; // On page 1
-const int MAXUSERS = 100000; // Page 1
+const int DIRECTORPOINTS = 20;
+const int ACTORPOINTS = 30;
+const int GENREPOINTS = 1;
 
 struct MovieAndRank
 {
@@ -26,11 +30,12 @@ class Recommender
     Recommender(const UserDatabase& user_database,
                 const MovieDatabase& movie_database);
     std::vector<MovieAndRank> recommend_movies(const std::string& user_email,
-                                               int movie_count) const;  // ADDED const
+                                               int movie_count) const;
 
   private:
       const UserDatabase *m_ud;
       const MovieDatabase *m_md;
+      TreeMultimap<std::string, MovieAndRank> *m_moviesRanks;
 
       struct Heap {
       private:
@@ -74,5 +79,17 @@ class Recommender
       };
       
 };
+inline
+bool operator==(const MovieAndRank lhs, const MovieAndRank rhs) {
+    return lhs.movie_id == rhs.movie_id;
+}
+inline
+bool operator<(const MovieAndRank lhs, const MovieAndRank rhs) {
+    return lhs.compatibility_score < rhs.compatibility_score;
+}
+inline
+bool operator>(const MovieAndRank lhs, const MovieAndRank rhs) {
+    return lhs.compatibility_score > rhs.compatibility_score;
+}
 
 #endif // RECOMMENDER_INCLUDED
