@@ -94,40 +94,40 @@ public:
             m_root = new TreeNode(key, value, nullptr); // Parent ptr is null
         
         TreeNode* curr = m_root;
+        ValueType copyValue = value; // TODO UNSURE
         while (true) {
             // If found a TreeNode with the key already
             if (key == curr->keyVal) {
                 typename std::list<ValueType>::iterator it = (curr->values).begin();
-                    // Key already maps to the value
-                    if (value == *it)
-                        return;
-                    // If value should go right before this
-                    else if (value < *it) {
-                        // Add value right before here
-                        curr->values.insert(it, value); // UNSURE
-                        return;
-                    }
+                // Key already maps to the value
+                if (value == *it)
+                    return;
+                // If value should go right before this
+                else if (value < *it) {
+                    // Add value right before here
+                    curr->values.insert(it, copyValue);
+                    return;
+                }
 
-                    // Value should go after this
-                    else if (value > *it) {
-                        while (true) {
-                            // Add value to end of list
-                            if (it == curr->values.end()) {
-                                curr->values.push_back(value);
-                                return;
-                            }
-                            // Iterate to next element
-                            else
-                                it++;
-
+                // Value should go after this
+                else if (value > *it) {
+                    while (true) {
+                        // Add value to end of list
+                        if (it == curr->values.end()) {
+                            curr->values.push_back(copyValue);
+                            return;
                         }
+                        // Iterate to next element
+                        else
+                            it++;
                     }
+                }
             }
             // TreeNode for key doesn't exist yet
             else if (key < curr->keyVal) {
                 // Create new TreeNode as left child
                 if (curr->left == nullptr) {
-                    curr->left = new TreeNode(key, value, curr);
+                    curr->left = new TreeNode(key, copyValue, curr);
                     return;
                 }
                 // Iterate to left TreeNode
@@ -137,7 +137,7 @@ public:
             // key > curr->keyVal
             else {
                 if (curr->right == nullptr) {
-                    curr->right = new TreeNode(key, value, curr);
+                    curr->right = new TreeNode(key, copyValue, curr);
                     return;
                 }
                 else

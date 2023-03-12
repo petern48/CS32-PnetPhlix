@@ -39,7 +39,7 @@ class Recommender
 
       struct Heap {
       private:
-          MovieAndRank maxHeap[MAXMOVIES]; // Maybe convert to an array?
+          MovieAndRank maxHeap[MAXMOVIES];
           int count = 0;
       public:
           int getRootLoc() { return 0; }
@@ -79,6 +79,8 @@ class Recommender
       };
       
 };
+
+// UNSURE if can declare theses TODO
 inline
 bool operator==(const MovieAndRank lhs, const MovieAndRank rhs) {
     return lhs.movie_id == rhs.movie_id;
