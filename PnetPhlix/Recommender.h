@@ -6,6 +6,7 @@
 #include "treemm.h"
 #include "MovieDatabase.h"
 #include "UserDatabase.h"
+#include <unordered_map>
 
 class UserDatabase;
 class MovieDatabase;
@@ -35,8 +36,12 @@ class Recommender
   private:
       const UserDatabase *m_ud;
       const MovieDatabase *m_md;
-      TreeMultimap<std::string, MovieAndRank> *m_moviesRanks;
+      //TreeMultimap<std::string, MovieAndRank> *m_moviesRanks;
+      std::unordered_map<std::string, int>* m_moviesRanks;
 
+      static bool compareMR(const std::pair<Movie*, int>& p1, const std::pair<Movie*, int>& p2);
+
+      /*
       struct Heap {
       private:
           MovieAndRank maxHeap[MAXMOVIES];
@@ -77,10 +82,12 @@ class Recommender
           }
           void updateVal() {}
       };
+      */
       
 };
 
 // UNSURE if can declare theses TODO
+/*
 inline
 bool operator==(const MovieAndRank lhs, const MovieAndRank rhs) {
     return lhs.movie_id == rhs.movie_id;
@@ -93,5 +100,6 @@ inline
 bool operator>(const MovieAndRank lhs, const MovieAndRank rhs) {
     return lhs.compatibility_score > rhs.compatibility_score;
 }
+*/
 
 #endif // RECOMMENDER_INCLUDED

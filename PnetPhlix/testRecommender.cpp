@@ -66,14 +66,14 @@ int main() {
 	cout << "Load md Took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
 	Recommender r(ud, md);
 
-	cout << "User Email: AbFow2483@charter.net";
-	string userEmail  = "AbFow2483@charter.net";
+	cout << "User Email: HezekF0394@aol.com" << endl;
+	string userEmail  = "HezekF0394@aol.com";
 	/*
 	cin >> userEmail;
 	cout << endl;
 	*/
 	start = chrono::steady_clock::now();
-	findMatches(r, md, userEmail, 10);
+	findMatches(r, md, userEmail, 3);
 	stop = chrono::steady_clock::now();
 	cout << "findMatches Took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
 }

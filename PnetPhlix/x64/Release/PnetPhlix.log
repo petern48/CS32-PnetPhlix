@@ -1,10 +1,7 @@
-﻿  MovieDatabase.cpp
-  Recommender.cpp
-  UserDatabase.cpp
-  testRecommender.cpp
+﻿  testRecommender.cpp
   Generating code
-  17 of 639 functions ( 2.7%) were compiled, the rest were copied from previous compilation.
+  2 of 848 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    41 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PnetPhlix.vcxproj -> C:\CS32\CS32-PnetPhlix\PnetPhlix\x64\Release\PnetPhlix.exe

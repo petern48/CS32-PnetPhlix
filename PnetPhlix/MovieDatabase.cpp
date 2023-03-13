@@ -7,8 +7,8 @@ using namespace std;
 
 // I added the following
 #include <iostream>
-
 #include <sstream> // To convert string to int
+#include <cctype>
 
 MovieDatabase::MovieDatabase()
 {   
@@ -41,13 +41,14 @@ bool MovieDatabase::load(const string& filename)
     float rating;
     Movie* movie = nullptr;
     while (true) {
-
+        id = "";
         int lineCount = 1;
 
         // Read in the first 3 lines
         while (getline(infile, currLine)) {
             if (lineCount == IDLINENUMBER)
-                id = currLine;
+                for (int i = 0; i < currLine.size(); i++) // Lowercase the key for case insensitive search
+                    id += tolower(currLine[i]);
             else if (lineCount == TITLELINENUMBER)
                 title = currLine;
             else if (lineCount == YEARLINENUMBER) {
@@ -96,65 +97,13 @@ bool MovieDatabase::load(const string& filename)
     return true;
 
 }
-/*
-bool MovieDatabase::load(const string& filename)
-{
-    ifstream infile(filename);
-    if (!infile) {
-        cerr << "Error: Couldn't open file " << filename << endl;
-        return false;
-    }
-    string currLine, temp;
-    string id, title, releaseYear;
-    vector<string> directors, actors, genres;
-    // int numDirectors, numActors, numGenres;
-    float rating;
-    Movie* movie = nullptr;
-    while (true) {
-
-        int lineCount = 1;
-
-        // Read in the first 3 lines
-        while (getline(infile, currLine)) {
-            if (lineCount == IDLINENUMBER)
-                id = currLine;
-            else if (lineCount == TITLELINENUMBER)
-                title = currLine;
-            else if (lineCount == YEARLINENUMBER) {
-                releaseYear = currLine;
-                break;
-            }
-            lineCount++;
-        }
-        parseLine(infile, directors);
-        parseLine(infile, actors);
-        parseLine(infile, genres);
-        stringstream ss;
-        if (getline(infile, currLine)) {
-            ss << currLine;
-            ss >> rating;
-        }
-        
-        // Create Movie and push to tree
-        movie = new Movie(id, title, releaseYear, directors, actors, genres, rating);
-        directors.clear();
-        actors.clear();
-        genres.clear();
-
-        m_tree->insert(id, movie); // UNSURE if sort by ID
-
-        // We should now be at the end of the Movie Record, throw away empty line
-        if (!getline(infile, currLine))
-            break;
-    }
-
-    return true;
-}
-*/
 
 Movie* MovieDatabase::get_movie_from_id(const string& id) const
 {
-    TreeMultimap<string, int>::Iterator it = m_idTree->find(id);
+    string lowerID;
+    for (int i = 0; i < id.size(); i++) // Lowercase the key for case insensitive search
+        lowerID += tolower(id[i]);
+    TreeMultimap<string, int>::Iterator it = m_idTree->find(lowerID);
     if (it.is_valid())
         return m_movies[it.get_value()]; // Get the position of the movie and return the respective movie
     return nullptr;
@@ -207,17 +156,15 @@ void MovieDatabase::parseLine(ifstream& infile, vector<string>& v) {
     while (infile.get(c)) {
         // Remove the comma if there is one
         if (c == ',') {
-            v.push_back(currLine);
+            v.push_back(currLine); // Push words to vector
             currLine = "";
         }
         else if (c == '\n') {
-            v.push_back(currLine); // TODO
+            v.push_back(currLine);
             return;
         }
         else
-            currLine += c; // Push words to vector
-
-
+            currLine += c; 
     }
 }
 

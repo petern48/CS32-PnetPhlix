@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 Recommender::Recommender(const UserDatabase& user_database,
@@ -13,7 +14,7 @@ Recommender::Recommender(const UserDatabase& user_database,
     // given ud and md are already loaded
     m_ud = &user_database;
     m_md = &movie_database;
-    m_moviesRanks = new TreeMultimap<string, MovieAndRank>;
+    m_moviesRanks = new unordered_map<string, int>;
 }
 
 vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int movie_count) const
@@ -26,7 +27,7 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
     vector<string> watchHistory = user->get_watch_history();
     vector<Movie*> movieVect;
     vector<string> criteriaVect;
-    TreeMultimap<string, MovieAndRank>::Iterator it;
+    unordered_map<string, int>::iterator it;
     int pointsToAdd;
 
     // Determine compatibility score based on each movie watched
@@ -63,22 +64,52 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
 
                 for (int k = 0; k < movieVect.size(); k++) {
                     it = m_moviesRanks->find(m->get_id());
-                    if (it.is_valid())
-                        it.get_value().compatibility_score += pointsToAdd;
+                    if (it != m_moviesRanks->end())
+                        it->second += pointsToAdd;
                     else {
-                        MovieAndRank mr(m->get_id(), pointsToAdd);
-                        m_moviesRanks->insert(m->get_id(), mr);
+                        //MovieAndRank mr(m->get_id(), pointsToAdd);
+                        m_moviesRanks->insert({ m->get_id(), pointsToAdd });
                     }
                 }
             }
         }
     }
 
+    vector<pair<Movie*, int>> v;
+
     // Get the top movie_count recommended movies
+    for (it = m_moviesRanks->begin(); it != m_moviesRanks->end(); it++) {
+        Movie* m = m_md->get_movie_from_id(it->first);
+        pair<Movie*, int> pair(m, it->second);
+        v.push_back(pair);
+    }
+    
+    sort(v.begin(), v.end(), compareMR);
 
-
-
-    // add to recommendations.push_back()
-
+    for (int i = 0; i < movie_count && v.size() > 0; i++) {
+        MovieAndRank mr(v[i].first->get_id(), v[i].second);
+        recommendations.push_back(mr);
+    }
     return recommendations;
+}
+
+bool Recommender::compareMR(const pair<Movie*, int>& p1, const pair<Movie*, int>& p2) {
+    
+    // Order based on compatibility score
+    if (p1.second > p2.second)
+        return true;
+    else if (p1.second < p2.second)
+        return false;
+
+    // Order by rating
+    if (p1.first->get_rating() > p2.first->get_rating())
+        return true;
+    else if (p1.first->get_rating() < p2.first->get_rating())
+        return false;
+
+    // Order by name (first in alphabet comes first)
+    if (p1.first->get_title() < p2.first->get_title())
+        return true;
+    else
+        return false;
 }
