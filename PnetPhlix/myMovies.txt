@@ -1,127 +1,64 @@
-ID10782
-Santosh Subramaniam
-2008
-M. Raja
-Jayam Ravi,Genelia D'Souza,Prakash Raj,Sayaji Shinde,Geetha
-Action,Comedy,Romance
-5
-
-ID25779
-The Carpet of Horror
-1962
-Harald Reinl
-Joachim Fuchsberger,Karin Dor,Werner Peters,Eleonora Rossi Drago,Carl Lange
-Crime,Horror
-2.25
-
-ID35763
-Monkey Love Experiments
-2014
-Will Anderson
-Tobias Feltus,Oliver Henderson
-Animation,Drama
-4
-
-ID02298
-The Arbalest
-2016
-Adam Pinney
-Mike Brune,Tallie Medel,Matthew Stanton,Felice Heather Monteith,Jon Briddell
-Drama
-3.5
-
-ID39216
-No Safe Spaces
-2019
-Justin Folk
-Dennis Prager,Adam Carolla,Ben Shapiro,Jordan B. Peterson,Dave Rubin
-Documentary
-3.44444
-
-ID19214
-The Queen of Trees
-2005
-Mark Deeble
-Ian Holm
-Documentary,Drama
+ID00001
+Back to The Future
+1985
+Robert Zemeckis
+Michael J. Fox,Christopher Lloyd,Lea Thompson,Crispin Glover
+Action,Adventure,Sci-Fi
 4.25
 
-ID00910
-Paris The Luminous Years
-2010
-Perry Miller Adato
-Josephine Baker,Sylvia Beach,Daniel Breaker,Chris Henry Coffey,Aaron Copland
-Documentary
+ID00002
+Rocky Horror Picture Show
+1975
+Jim Sharman
+Tim Curry,Richard O'Brien,Susan Sarandon,Meat Loaf
+Horror,Comedy
+3.7
+
+ID00003
+The Matrix
+1999
+Andy Wachowski,Larry Wachowski
+Laurence Fishburne,Keanu Reeves,Hugo Weaving,Carrie-Anne Moss
+Action,Sci-Fi,Thriller
+4.15952
+
+ID00004
+The Matrix Reloaded
+2003
+Andy Wachowski,Larry Wachowski
+Keanu Reeves,Laurence Fishburne,Carrie-Anne Moss,Hugo Weaving
+Action,Adventure,Sci-Fi,Thriller,IMAX
+3.36812
+
+ID00005
+Collider
+2018
+Justin Lewis
+Christine Mascolo,Jude Moran,Conner Greenhalgh,Heath C. Heine
+Sci-Fi
 3
 
-ID38613
-Maria, Mirabella
-1981
-Ion Popescu-Gopo
-Gilda Manolescu,Medeea Marinescu,Ion Popescu-Gopo,Ingrid Celia,Lyudmila Gnilova
-Animation,Children,Comedy
+ID00006
+The Psychotronic Man
+1980
+Jack M. Sell
+Peter Spelson,Chris Carbis,Curt Colbert,Robin Newton
+Horror,Sci-Fi
 2
 
-ID31049
-Klaus
-2019
-Sergio Pablos
-Rashida Jones,J.K. Simmons,Joan Cusack,Jason Schwartzman,Tucker Meek
-Adventure,Animation,Children,Comedy
-3.85808
-
-ID38033
-The Devil's Partner
-1961
-Charles R. Rondeau
-Edgar Buchanan,Jean Allison,Richard Crane,Spencer Carlisle,Byron Foulger
-Horror
-2.5
-
-ID21608
-Trackman
-2007
-Igor Shavlak
-Dmitriy Orlov,Svetlana Metkina,Yuliya Mikhailova,Igor Shavlak,Aleksandr Vysokovskiy
-Horror,Thriller
-1.83333
-
-ID13832
-Next
-1990
-Barry Purves
-Roger Rees,Barry Purves
-Animation
-3.25
-
-ID15176
-The Life and Times of Frida Kahlo
-2005
-Amy Stechler
-Rita Moreno,Lila Downs,Leon Trotsky
-Documentary
-4
-
-ID01979
-First Man on the Moon
-2012
-Christopher Riley
-Corey Johnson,Neil Armstrong,Michael Collins,Buzz Aldrin,Dave Scott
-Documentary
-4
-
-ID06640
-Marvel Renaissance
-2014
-Philippe Guedj
-Avi Arad,Tom DeSanto,Louis Leterrier,Mark Millar,Jimmy Palmiotti
-Documentary
+ID00007
+Alien Outlaw
+1985
+Phil Smoot
+18
+Stephen Winegard,Kimberly Mauldin,Stuart Watson,Sunset Carson,Kari Anderson
+Comedy,Horror,Mystery,Sci-Fi,Western
 3
 
-ID06638
-Winston Churchill: A Giant in the Century
-2014
-David Korn-Brzoza
-Vincent Lindon,Winston Churchill,Clementine Churchill,Diana Churchill,Mary Churchill
-Documentary,War
-4.5
+ID00008
+Running with the Devil
+2019
+Jason Cabell
+Nicolas Cage,Leslie Bibb,Clifton Collins Jr.,Barry Pepper,Laurence Fishburne
+Crime,Drama,Thriller,Adventure
+2.93182

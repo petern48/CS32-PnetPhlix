@@ -49,8 +49,9 @@ void findMatches(const Recommender& r,
 		}
 	}
 
-const string USERFILENAME = "users.txt";
-const string MOVIEFILENAME = "movies.txt";
+const string USERFILENAME = "myUsers.txt";
+const string MOVIEFILENAME = "myMovies.txt";
+const string userEmail = "climberkip@gmail.com";
 
 int main() {
 	UserDatabase ud;
@@ -66,12 +67,9 @@ int main() {
 	cout << "Load md Took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
 	Recommender r(ud, md);
 
-	cout << "User Email: HezekF0394@aol.com" << endl;
-	string userEmail  = "HezekF0394@aol.com";
-	/*
-	cin >> userEmail;
-	cout << endl;
-	*/
+	cout << "User Email: " << userEmail << endl;
+
+
 	start = chrono::steady_clock::now();
 	findMatches(r, md, userEmail, 3);
 	stop = chrono::steady_clock::now();

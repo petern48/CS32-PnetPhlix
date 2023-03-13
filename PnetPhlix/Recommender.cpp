@@ -86,7 +86,7 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
     
     sort(v.begin(), v.end(), compareMR);
 
-    for (int i = 0; i < movie_count && v.size() > 0; i++) {
+    for (int i = 0; i < movie_count && i < v.size(); i++) {
         MovieAndRank mr(v[i].first->get_id(), v[i].second);
         recommendations.push_back(mr);
     }
