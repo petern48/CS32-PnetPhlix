@@ -100,7 +100,7 @@ public:
             if (key == curr->keyVal) {
                 typename std::list<ValueType>::iterator it = (curr->values).begin();
                 // Key already maps to the value
-                if (value == *it)
+                if (value == *it) // TODO (see page 23, still insert another?)
                     return;
                 // If value should go right before this
                 else if (value < *it) {
