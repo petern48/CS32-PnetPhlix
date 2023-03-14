@@ -62,13 +62,25 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
                     movieVect = m_md->get_movies_with_genre(criteriaVect[j]); break; // For each genre
                 }
 
+                Movie* tempPtr;
+                // Remove the watched movies from the vector
+                for (int k = 0; k < watchHistory.size(); k++) {
+                    vector<Movie*>::iterator it;
+                    tempPtr = m_md->get_movie_from_id(watchHistory[k]);
+                    it = find(movieVect.begin(), movieVect.end(), tempPtr);
+                    if (it != movieVect.end())
+                        movieVect.erase(it);
+                }
+
                 for (int k = 0; k < movieVect.size(); k++) {
-                    it = m_moviesRanks->find(m->get_id());
-                    if (it != m_moviesRanks->end())
+                    it = m_moviesRanks->find(movieVect[k]->get_id());
+                    
+                    if (it != m_moviesRanks->end()) {
                         it->second += pointsToAdd;
+                    }
                     else {
                         //MovieAndRank mr(m->get_id(), pointsToAdd);
-                        m_moviesRanks->insert({ m->get_id(), pointsToAdd });
+                        m_moviesRanks->insert({ movieVect[k]->get_id(), pointsToAdd });
                     }
                 }
             }

@@ -40,49 +40,6 @@ class Recommender
       std::unordered_map<std::string, int>* m_moviesRanks;
 
       static bool compareMR(const std::pair<Movie*, int>& p1, const std::pair<Movie*, int>& p2);
-
-      /*
-      struct Heap {
-      private:
-          MovieAndRank maxHeap[MAXMOVIES];
-          int count = 0;
-      public:
-          int getRootLoc() { return 0; }
-          int leftChildLoc(int i) { return(2 * i + 1); }
-          int rightChildLoc(int i) { return(2 * i + 2); }
-          int parentLoc(int i) { return((i - 1) / 2); }
-          int getRank(int i) { return maxHeap[i].compatibility_score; }
-          int getSize() { return count; }
-          int addNode(MovieAndRank v) { 
-              maxHeap[count] = v; 
-              count++; 
-              return count - 1; // Returns pos of Node
-          }
-          int swapWithParent(int curr, int parent) {
-              MovieAndRank temp = maxHeap[curr];
-              maxHeap[curr] = maxHeap[parent];
-              maxHeap[parent] = temp;
-              return parent;
-          } // Return position of curr
-
-          void addVal(MovieAndRank m) {
-              // If empty, create new root
-              if (getSize() == 0) {
-                  addNode(m);
-                  return;
-              }
-              int pos = addNode(m);
-              while (true) {
-                  // If greater than parent, swap
-                  if (m.compatibility_score > getRank(parentLoc(pos)))
-                      pos = swapWithParent(pos, parentLoc(pos));
-                  else
-                      return;
-              }
-          }
-          void updateVal() {}
-      };
-      */
       
 };
 

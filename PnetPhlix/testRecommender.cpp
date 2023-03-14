@@ -52,6 +52,7 @@ void findMatches(const Recommender& r,
 const string USERFILENAME = "myUsers.txt";
 const string MOVIEFILENAME = "myMovies.txt";
 const string userEmail = "climberkip@gmail.com";
+const int NUMTORECOMMEND = 3;
 
 int main() {
 	UserDatabase ud;
@@ -71,7 +72,7 @@ int main() {
 
 
 	start = chrono::steady_clock::now();
-	findMatches(r, md, userEmail, 3);
+	findMatches(r, md, userEmail, NUMTORECOMMEND);
 	stop = chrono::steady_clock::now();
 	cout << "findMatches Took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
 }
