@@ -14,12 +14,18 @@ using namespace std;
 
 UserDatabase::UserDatabase()
 {
-    m_tree = new TreeMultimap<string, User*>;
+    m_numUsers = 0;
 }
 
 UserDatabase::~UserDatabase() {
-    if (m_tree != nullptr)
-        delete m_tree;
+    // Delete the allocated users
+    for (int i = 0; i < m_numUsers; i++) {
+        if (m_users[i] != nullptr) {
+            delete m_users[i];
+            m_users[i] = nullptr;
+        }
+    }
+
 }
 
 bool UserDatabase::load(const string& filename)
@@ -31,7 +37,6 @@ bool UserDatabase::load(const string& filename)
     }
 
     string currLine;
-    User* newUser;
     string name;
     string email;
     vector<string> watchHistory;
@@ -54,10 +59,11 @@ bool UserDatabase::load(const string& filename)
             // If done with this User record, reset values and create user
             if (lineCount == totalMovieCount + MOVIECOUNTLINENUMBER) {
                 // Create user and push to tree
-                newUser = new User(name, email, watchHistory);
-                m_tree->insert(email, newUser);
+                m_users[m_numUsers] = new User(name, email, watchHistory);
+                m_tree.insert(email, m_numUsers);
+                m_numUsers++;
 
-                watchHistory.clear(); // TODO. Note: string destructor is not trivial
+                watchHistory.clear();
                 // Skip new line after each User record
                 infile.ignore(10000, '\n');
                 lineCount = 0; // Will become 1 at end of loop
@@ -70,8 +76,8 @@ bool UserDatabase::load(const string& filename)
 
 User* UserDatabase::get_user_from_email(const string& email) const
 {
-    TreeMultimap<string, User*>::Iterator it = m_tree->find(email);
-    if (it.is_valid() && it.get_value() != nullptr)
-        return it.get_value();
+    TreeMultimap<string, int>::Iterator it = m_tree.find(email);
+    if (it.is_valid())
+        return m_users[it.get_value()];
     return nullptr;
 }

@@ -20,7 +20,9 @@ class UserDatabase // CASE SENSITIVE
     ~UserDatabase();
 
   private:
-      TreeMultimap<std::string, User*> *m_tree;
+      TreeMultimap<std::string, int> m_tree;
+      User* m_users[MAXUSERS];
+      int m_numUsers;
 };
 
 #endif // USERDATABASE_INCLUDED

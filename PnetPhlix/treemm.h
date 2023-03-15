@@ -94,14 +94,14 @@ public:
             m_root = new TreeNode(key, value, nullptr); // Parent ptr is null
         
         TreeNode* curr = m_root;
-        ValueType copyValue = value; // TODO UNSURE
+        ValueType copyValue = value;
         while (true) {
             // If found a TreeNode with the key already
             if (key == curr->keyVal) {
                 typename std::list<ValueType>::iterator it = (curr->values).begin();
                 // Key already maps to the value
                 if (value == *it) { // still insert another (page 23)
-                    //curr->values.push_back(copyValue);
+                    curr->values.push_back(copyValue);
                     return;
                 }
                 // If value should go right before this

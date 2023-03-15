@@ -18,7 +18,7 @@ const int RATINGLINENUMBER = 7;
 
 class Movie;
 
-class MovieDatabase // CASE INSENSITIVE search TODO
+class MovieDatabase // CASE INSENSITIVE search
 {
   public:
     MovieDatabase();
@@ -30,15 +30,16 @@ class MovieDatabase // CASE INSENSITIVE search TODO
     std::vector<Movie*> get_movies_with_genre(const std::string& genre) const;
 
   private:
-      TreeMultimap <std::string, int>* m_idTree;
-      TreeMultimap <std::string, int>* m_directorTree;
-      TreeMultimap <std::string, int>* m_actorTree;
-      TreeMultimap <std::string, int>* m_genreTree;
+      TreeMultimap <std::string, int> m_idTree;
+      TreeMultimap <std::string, int> m_directorTree;
+      TreeMultimap <std::string, int> m_actorTree;
+      TreeMultimap <std::string, int> m_genreTree;
 
       Movie* m_movies[MAXMOVIES];
       int m_movieCount;
 
       void parseLine(std::ifstream& infile, std::vector<std::string>& v);
+      void lowerVectorAndInsertIntoTree(std::vector<std::string>& v, TreeMultimap<std::string, int>& t);
 };
 
 #endif // MOVIEDATABASE_INCLUDED

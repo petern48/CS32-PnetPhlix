@@ -43,20 +43,4 @@ class Recommender
       
 };
 
-// UNSURE if can declare theses TODO
-/*
-inline
-bool operator==(const MovieAndRank lhs, const MovieAndRank rhs) {
-    return lhs.movie_id == rhs.movie_id;
-}
-inline
-bool operator<(const MovieAndRank lhs, const MovieAndRank rhs) {
-    return lhs.compatibility_score < rhs.compatibility_score;
-}
-inline
-bool operator>(const MovieAndRank lhs, const MovieAndRank rhs) {
-    return lhs.compatibility_score > rhs.compatibility_score;
-}
-*/
-
 #endif // RECOMMENDER_INCLUDED

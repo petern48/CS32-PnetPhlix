@@ -12,11 +12,11 @@
 //	ud.load(FILENAME);
 //	
 //	string inputEmail;
-//	cout << "Input: ";
-//	cin >> inputEmail;
+//	cout << "Input: AbFow2483@charter.net";
+//	inputEmail = "AbFow2483@charter.net";
 //	User* u = ud.get_user_from_email(inputEmail);
 //	if (u == nullptr) {
-//		"Invalid Email";
+//		cout << "Invalid Email";
 //		return -1;
 //	}
 //	cout << u->get_full_name() << endl;

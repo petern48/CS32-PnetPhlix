@@ -12,18 +12,16 @@ using namespace std;
 
 MovieDatabase::MovieDatabase()
 {   
-    m_idTree = new TreeMultimap<string, int>;
-    m_actorTree = new TreeMultimap<string, int>;
-    m_directorTree = new TreeMultimap<string, int>;
-    m_genreTree = new TreeMultimap<string, int>;
     m_movieCount = 0;
 }
 
 MovieDatabase::~MovieDatabase() {
-    delete m_idTree;
-    delete m_actorTree;
-    delete m_directorTree;
-    delete m_genreTree;
+    // Delete the Movies
+    for (int i = 0; i < m_movieCount; i++) {
+        if (m_movies[i] != nullptr)
+            delete m_movies[i];
+        m_movies[i] = nullptr;
+    }
 }
 
 bool MovieDatabase::load(const string& filename)
@@ -34,21 +32,22 @@ bool MovieDatabase::load(const string& filename)
         return false;
     }
 
-    string currLine, temp;
+    string currLine;
     string id, title, releaseYear;
     vector<string> directors, actors, genres;
-    // int numDirectors, numActors, numGenres;
     float rating;
     Movie* movie = nullptr;
     while (true) {
-        id = "";
         int lineCount = 1;
-
+        id = "";
         // Read in the first 3 lines
         while (getline(infile, currLine)) {
             if (lineCount == IDLINENUMBER)
+                id = currLine;
+            /*
                 for (int i = 0; i < currLine.size(); i++) // Lowercase the key for case insensitive search
                     id += tolower(currLine[i]);
+            */
             else if (lineCount == TITLELINENUMBER)
                 title = currLine;
             else if (lineCount == YEARLINENUMBER) {
@@ -69,23 +68,21 @@ bool MovieDatabase::load(const string& filename)
         // Create Movie and push to vector
         movie = new Movie(id, title, releaseYear, directors, actors, genres, rating);
         m_movies[m_movieCount] = movie;
-        // Increment count after for loops
+        // Increment m_movieCount after inserting in trees
 
-        // Insert into trees
-        m_idTree->insert(id, m_movieCount);
+        // Lowercase everything to insert as a key (case insensitive)
+        for (int i = 0; i < id.size(); i++)
+            id[i] = tolower(id[i]);
 
-        for (int i = 0; i < actors.size(); i++)
-            m_actorTree->insert(actors[i], m_movieCount);
+        // Insert index values into trees
+        m_idTree.insert(id, m_movieCount);
 
-        for (int i = 0; i < directors.size(); i++)
-            m_directorTree->insert(directors[i], m_movieCount);
 
-        for (int i = 0; i < genres.size(); i++)
-            m_genreTree->insert(genres[i], m_movieCount);
-
-        directors.clear();
-        actors.clear();
-        genres.clear();
+        // Lowercase vector, insert into tree, and clear vector
+        lowerVectorAndInsertIntoTree(actors, m_actorTree);
+        lowerVectorAndInsertIntoTree(directors, m_directorTree);
+        lowerVectorAndInsertIntoTree(genres, m_genreTree);
+       
 
         m_movieCount++;
 
@@ -100,10 +97,10 @@ bool MovieDatabase::load(const string& filename)
 
 Movie* MovieDatabase::get_movie_from_id(const string& id) const
 {
-    string lowerID;
+    string loweredInput;
     for (int i = 0; i < id.size(); i++) // Lowercase the key for case insensitive search
-        lowerID += tolower(id[i]);
-    TreeMultimap<string, int>::Iterator it = m_idTree->find(lowerID);
+        loweredInput += tolower(id[i]);
+    TreeMultimap<string, int>::Iterator it = m_idTree.find(loweredInput);
     if (it.is_valid())
         return m_movies[it.get_value()]; // Get the position of the movie and return the respective movie
     return nullptr;
@@ -111,9 +108,12 @@ Movie* MovieDatabase::get_movie_from_id(const string& id) const
 
 vector<Movie*> MovieDatabase::get_movies_with_director(const string& director) const
 {
+    string loweredInput;
+    for (int i = 0; i < director.size(); i++) // Lowercase the key for case insensitive search
+        loweredInput += tolower(director[i]);
     vector<Movie*> v;
     Movie* movie;
-    TreeMultimap<string, int>::Iterator it = m_directorTree->find(director);
+    TreeMultimap<string, int>::Iterator it = m_directorTree.find(loweredInput);
     while (it.is_valid()) {
         movie = m_movies[it.get_value()];
         v.push_back(movie);
@@ -124,9 +124,12 @@ vector<Movie*> MovieDatabase::get_movies_with_director(const string& director) c
 
 vector<Movie*> MovieDatabase::get_movies_with_actor(const string& actor) const
 {
+    string loweredInput;
+    for (int i = 0; i < actor.size(); i++) // Lowercase the key for case insensitive search
+        loweredInput += tolower(actor[i]);
     vector<Movie*> v;
     Movie* movie;
-    TreeMultimap<string, int>::Iterator it = m_actorTree->find(actor);
+    TreeMultimap<string, int>::Iterator it = m_actorTree.find(loweredInput);
     while (it.is_valid()) {
         movie = m_movies[it.get_value()];
         v.push_back(movie);
@@ -137,9 +140,12 @@ vector<Movie*> MovieDatabase::get_movies_with_actor(const string& actor) const
 
 vector<Movie*> MovieDatabase::get_movies_with_genre(const string& genre) const
 {
+    string loweredInput;
+    for (int i = 0; i < genre.size(); i++) // Lowercase the key for case insensitive search
+        loweredInput += tolower(genre[i]);
     vector<Movie*> v;
     Movie* movie;
-    TreeMultimap<string, int>::Iterator it = m_genreTree->find(genre);
+    TreeMultimap<string, int>::Iterator it = m_genreTree.find(loweredInput);
     while (it.is_valid()) {
         movie = m_movies[it.get_value()];
         v.push_back(movie);
@@ -168,3 +174,15 @@ void MovieDatabase::parseLine(ifstream& infile, vector<string>& v) {
     }
 }
 
+void MovieDatabase::lowerVectorAndInsertIntoTree(vector<string>& v, TreeMultimap<string, int>& t) {
+    for (int i = 0; i < v.size(); i++) {
+        // Lowercase all strings in vector
+        for (int j = 0; j < v[i].length(); j++)
+            v[i][j] = tolower(v[i][j]);
+
+        // Insert into tree
+        t.insert(v[i], m_movieCount);
+    }
+    // Clear vector
+    v.clear();
+}
