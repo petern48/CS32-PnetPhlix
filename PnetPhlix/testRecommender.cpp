@@ -61,13 +61,15 @@ int main() {
 	auto start = chrono::steady_clock::now();
 	ud.load(USERFILENAME);
 	auto stop = chrono::steady_clock::now();
-	cout << "Load ud Took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
+	cout << "Loading UserDatabase of ~" << to_string(MAXUSERS) << " users took ";
+	cout << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
 	
 	start = chrono::steady_clock::now();
 	MovieDatabase md;
 	md.load(MOVIEFILENAME);
 	stop = chrono::steady_clock::now();
-	cout << "Load md Took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
+	cout << "Loading MovieDatabase of ~" << to_string(MAXMOVIES) << " movies took ";
+	cout << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
 	Recommender r(ud, md);
 
 	string userEmail;
@@ -80,5 +82,5 @@ int main() {
 	start = chrono::steady_clock::now();
 	findMatches(r, md, userEmail, numToRecommend);
 	stop = chrono::steady_clock::now();
-	cout << "findMatches Took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
+	cout << "findMatches function took " << (chrono::duration_cast<chrono::milliseconds>(stop - start).count()) << "ms" << endl;
 }

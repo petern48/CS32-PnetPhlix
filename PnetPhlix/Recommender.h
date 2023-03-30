@@ -38,7 +38,6 @@ class Recommender
   private:
       const UserDatabase *m_ud;
       const MovieDatabase *m_md;
-      //TreeMultimap<std::string, MovieAndRank> *m_moviesRanks;
       std::unordered_map<std::string, int>* m_moviesRanks;
 
       static bool compareMR(const std::pair<Movie*, int>& p1, const std::pair<Movie*, int>& p2);

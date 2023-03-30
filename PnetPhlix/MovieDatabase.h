@@ -7,7 +7,7 @@
 #include "treemm.h"
 #include <fstream>
 
-const int MAXMOVIES = 40000; // Spec says 20k, but .txt file has 40k
+const int MAXMOVIES = 40000;
 const int IDLINENUMBER = 1;
 const int TITLELINENUMBER = 2;
 const int YEARLINENUMBER = 3;
@@ -18,13 +18,14 @@ const int RATINGLINENUMBER = 7;
 
 class Movie;
 
-class MovieDatabase // CASE INSENSITIVE search
+class MovieDatabase
 {
   public:
     MovieDatabase();
-    ~MovieDatabase(); // Added Destructor
+    ~MovieDatabase();
     bool load(const std::string& filename);
     Movie* get_movie_from_id(const std::string& id) const;
+    // Case Insensitive search
     std::vector<Movie*> get_movies_with_director(const std::string& director) const;
     std::vector<Movie*> get_movies_with_actor(const std::string& actor) const;
     std::vector<Movie*> get_movies_with_genre(const std::string& genre) const;
