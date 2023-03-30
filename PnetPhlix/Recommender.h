@@ -4,8 +4,10 @@
 #include <string>
 #include <vector>
 #include "treemm.h"
-#include "MovieDatabase.h"
+#include "User.h"
+#include "Movie.h"
 #include "UserDatabase.h"
+#include "MovieDatabase.h"
 #include <unordered_map>
 
 class UserDatabase;

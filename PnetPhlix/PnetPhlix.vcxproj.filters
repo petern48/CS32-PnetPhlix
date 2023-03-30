@@ -73,11 +73,5 @@
     <Text Include="users.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="myMovies.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="myUsers.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>

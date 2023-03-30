@@ -1,8 +1,5 @@
 #include "Recommender.h"
 
-#include "User.h"
-#include "Movie.h" // MOVE TO .H ??
-
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -75,13 +72,10 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
                 for (int k = 0; k < movieVect.size(); k++) {
                     it = m_moviesRanks->find(movieVect[k]->get_id());
                     
-                    if (it != m_moviesRanks->end()) {
+                    if (it != m_moviesRanks->end())
                         it->second += pointsToAdd;
-                    }
-                    else {
-                        //MovieAndRank mr(m->get_id(), pointsToAdd);
+                    else
                         m_moviesRanks->insert({ movieVect[k]->get_id(), pointsToAdd });
-                    }
                 }
             }
         }

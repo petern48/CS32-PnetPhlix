@@ -5,7 +5,6 @@
 #include <vector>
 using namespace std;
 
-// I added the following
 #include <iostream>
 #include <sstream> // To convert string to int
 #include <cctype>
@@ -44,10 +43,6 @@ bool MovieDatabase::load(const string& filename)
         while (getline(infile, currLine)) {
             if (lineCount == IDLINENUMBER)
                 id = currLine;
-            /*
-                for (int i = 0; i < currLine.size(); i++) // Lowercase the key for case insensitive search
-                    id += tolower(currLine[i]);
-            */
             else if (lineCount == TITLELINENUMBER)
                 title = currLine;
             else if (lineCount == YEARLINENUMBER) {

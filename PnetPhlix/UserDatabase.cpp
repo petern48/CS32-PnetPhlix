@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-// I added the following
 #include "User.h"
 #include <iostream>
 #include <fstream>
