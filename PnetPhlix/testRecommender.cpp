@@ -43,7 +43,7 @@ void findMatches(const Recommender& r,
 		cout << "We found no movies to recommend :(.\n";
 	else {
 		for (int i = 0; i < recommendations.size(); i++) {
-			const MovieAndRank& mr = recommendations[i]; // Replace parentheses with ;
+			const MovieAndRank& mr = recommendations[i];
 			Movie* m = md.get_movie_from_id(mr.movie_id);
 			cout << i << ". " << m->get_title() << " ("
 				<< m->get_release_year() << ")\n Rating: "
